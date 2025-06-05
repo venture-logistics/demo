@@ -1662,4 +1662,8 @@ xkeyframes
 
 }
 
+b, strong .fw-bold {
+  font-weight: 700;
+}
+
 
