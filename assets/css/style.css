@@ -1666,4 +1666,67 @@ b, strong .fw-bold {
   font-weight: 700;
 }
 
+/* Chat Widget Styles */
+#chat-widget {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 300px;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #fff7f0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
+#chat-header {
+  background: #ffb347;
+  color: #333;
+  padding: 14px 16px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+#chat-body {
+  display: none;
+  background: #fffaf2;
+  padding: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+  flex-grow: 1;
+  border-top: 1px solid #f0e0d0;
+}
+
+#chat-log {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+#chat-input {
+  width: 90%;
+  margin: 0 auto 12px auto;
+  padding: 10px 12px;
+  border-radius: 20px;
+  border: 1px solid #f4c084;
+  background-color: #fff;
+  font-size: 14px;
+  outline: none;
+  display: block;
+}
+
+.typing-indicator {
+  font-style: italic;
+  opacity: 0.6;
+  margin-top: 5px;
+  color: #888;
+  font-size: 13px;
+}
