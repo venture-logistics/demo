@@ -44,3 +44,18 @@ try {
   log.innerHTML += `<p><strong>Bot:</strong> Error. Try again later.</p>`;
   console.error("Chatbot error:", error);
 }
+
+// Add this to chatbot.js or inside a <script> tag in index.html
+function toggleChat() {
+  const chatBody = document.getElementById("chat-body");
+  if (chatBody.style.display === "none" || !chatBody.style.display) {
+    chatBody.style.display = "block";
+  } else {
+    chatBody.style.display = "none";
+  }
+}
+
+// Optionally, hide the chat body by default
+window.onload = function() {
+  document.getElementById("chat-body").style.display = "none";
+};
