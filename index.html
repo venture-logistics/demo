@@ -694,6 +694,16 @@
         <script src="assets/js/modernizr.js"></script>
         <script src="assets/js/main.js"></script>
 	<script src="assets/js/chat-bot.js"></script>
+
+	  <!-- Chat Widget -->
+	  <div id="chat-widget">
+	    <div id="chat-header" onclick="toggleChat()">💬 Chat With Us</div>
+	    <div id="chat-body">
+	      <div id="chat-log"></div>
+	      <input type="text" id="chat-input" placeholder="Ask something..." onkeypress="handleKeyPress(event)">
+	    </div>
+	  </div>
+	    
 		
 		<!-- Add this to the site where you want the chatbot -->
 <div id="my-chatbot-widget"></div>
