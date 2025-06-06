@@ -699,6 +699,16 @@
         <script src="assets/js/modernizr.js"></script>
         <script src="assets/js/main.js"></script>
 		
-		
+		<!-- Add this to the site where you want the chatbot -->
+<div id="my-chatbot-widget"></div>
+<script>
+  const iframe = document.createElement('iframe');
+  iframe.src = "https://chat-bot-iury.onrender.com";
+  iframe.width = "400";
+  iframe.height = "600";
+  iframe.style.border = "1px solid #ccc";
+  iframe.style.borderRadius = "8px";
+  document.getElementById('my-chatbot-widget').appendChild(iframe);
+</script>
     </body>
 </html>
