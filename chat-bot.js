@@ -28,6 +28,7 @@ async function askQuestion() {
     const response = await fetch("https://chat-bot-iury.onrender.com/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({ question })
     });
 
