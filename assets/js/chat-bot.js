@@ -24,34 +24,26 @@ async function askQuestion() {
   log.appendChild(typing);
   log.scrollTop = log.scrollHeight;
 
-try {
-  const response = await fetch("https://chat-bot-iury.onrender.com/ask", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question })
-  });
+  try {
+    const response = await fetch("https://chat-bot-iury.onrender.com/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ question })
+    });
 
-  if (!response.ok) {
+      if (!response.ok) {
     throw new Error(`Server error: ${response.status}`);
-  }
+    }
 
-  const data = await response.json();
-  typing.remove();
-  log.innerHTML += `<p><strong>Bot:</strong> ${data.answer}</p>`;
-  log.scrollTop = log.scrollHeight;
-} catch (error) {
-  typing.remove();
-  log.innerHTML += `<p><strong>Bot:</strong> Error. Try again later.</p>`;
-  console.error("Chatbot error:", error);
-}
-
-// Add this to chatbot.js or inside a <script> tag in index.html
-function toggleChat() {
-  const chatBody = document.getElementById("chat-body");
-  if (chatBody.style.display === "none" || !chatBody.style.display) {
-    chatBody.style.display = "block";
-  } else {
-    chatBody.style.display = "none";
+    const data = await response.json();
+    typing.remove();
+    log.innerHTML += `<p><strong>Bot:</strong> ${data.answer}</p>`;
+    log.scrollTop = log.scrollHeight;
+  } catch (error) {
+    typing.remove();
+    log.innerHTML += `<p><strong>Bot:</strong> Error. Try again later.</p>`;
+    console.error("Chatbot error:", error);
   }
 }
 
