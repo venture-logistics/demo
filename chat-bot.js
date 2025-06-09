@@ -1,6 +1,6 @@
-// Track user info in JS variables
-let userName = null;
-let userEmail = null;
+let chatStep = 0;      // 0 = greeting, 1 = ask for name, 2 = ask for email, 3 = chat
+let userName = null;   // Holds the user's name
+let userEmail = null;  // Holds the user's email
 
 function toggleChat() {
   const chat = document.getElementById("chat-body");
@@ -16,30 +16,38 @@ function handleKeyPress(event) {
 async function askQuestion() {
   const input = document.getElementById("chat-input");
   const log = document.getElementById("chat-log");
-  const question = input.value.trim();
-  if (!question) return;
+  const userInput = input.value.trim();
+  if (!userInput) return;
   input.value = "";
 
-  // If userName is not set, capture it and prompt for email
-  if (!userName) {
-    userName = question;
-    log.innerHTML += `<p><strong>You:</strong> ${question}</p>`;
-    log.innerHTML += `<p><strong>Bot:</strong> Hi ${userName}! What's your email?</p>`;
+  if (chatStep === 0) {
+    log.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+    log.innerHTML += `<p><strong>Bot:</strong> Hi there! What's your name?</p>`;
     log.scrollTop = log.scrollHeight;
+    chatStep = 1;
     return;
   }
 
-  // If userEmail is not set, capture it and prompt for questions
-  if (!userEmail) {
-    userEmail = question;
-    log.innerHTML += `<p><strong>You:</strong> ${question}</p>`;
+  if (chatStep === 1) {
+    userName = userInput;
+    log.innerHTML += `<p><strong>You:</strong> ${userName}</p>`;
+    log.innerHTML += `<p><strong>Bot:</strong> Nice to meet you, ${userName}! What's your email?</p>`;
+    log.scrollTop = log.scrollHeight;
+    chatStep = 2;
+    return;
+  }
+
+  if (chatStep === 2) {
+    userEmail = userInput;
+    log.innerHTML += `<p><strong>You:</strong> ${userEmail}</p>`;
     log.innerHTML += `<p><strong>Bot:</strong> Great! Ask me anything.</p>`;
     log.scrollTop = log.scrollHeight;
+    chatStep = 3;
     return;
   }
 
-  // Normal chat after name and email are set
-  log.innerHTML += `<p><strong>You:</strong> ${question}</p>`;
+  // Normal chat
+  log.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
   const typing = document.createElement("p");
   typing.textContent = "Bot is thinking...";
   log.appendChild(typing);
@@ -48,7 +56,7 @@ async function askQuestion() {
   const payload = {
     name: userName,
     email: userEmail,
-    question: question
+    question: userInput
   };
 
   try {
